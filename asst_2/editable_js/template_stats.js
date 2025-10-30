@@ -43,30 +43,30 @@ function showStats(data) {
                         <div class="stat-number">${categoryAmount}</div>
                     </div>`
 
-    const authors = new Set(data.map((item) => item.artist_title))
+    const artists = new Set(data.map((item) => item.artist_title))
     statsHTML += `<div class="stat-card">
                         <h3 class="stat-title">Number of Artists</h3>
-                        <div class="stat-number">${authors.size}</div>
+                        <div class="stat-number">${artists.size}</div>
                     </div>`
 
-    let mostPublishedAuthor = "";
+    let mostPublishedArtist = "";
     let publications = 0;
-    authors.forEach(author => {
-        let authorArtworks = data.filter(function(artwork){
-            return (artwork.artist_title === author)
+    artists.forEach(artist => {
+        let artistArtworks = data.filter(function(artwork){
+            return (artwork.artist_title === artist)
         })
-        if (publications < authorArtworks.length)
+        if (publications < artistArtworks.length)
         {
-            publications = authorArtworks.length;
-            mostPublishedAuthor = author;
+            publications = artistArtworks.length;
+            mostPublishedArtist = artist;
         }
     });
     statsHTML += `<div class="stat-card">
-                        <h3 class="stat-title">Most Published Author</h3>
-                        <div class="stat-number">${mostPublishedAuthor}</div>
+                        <h3 class="stat-title">Most Published Artist</h3>
+                        <div class="stat-number">${mostPublishedArtist}</div>
                     </div>`
     statsHTML += `<div class="stat-card">
-                        <h3 class="stat-title">Author's Works</h3>
+                        <h3 class="stat-title">Artist's Works</h3>
                         <div class="stat-number">${publications}</div>
                     </div>`
 

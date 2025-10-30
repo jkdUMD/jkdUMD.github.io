@@ -16,11 +16,11 @@ function showCategories(data) {
   console.log(categories);
 
   categories.forEach(category => {
-    categoriesHTML += `<h3 class=category-header>${category}</h3>
+    let categoryArtworks = data.filter(function(artwork){
+      return (artwork.category_titles[0] === category)
+    })
+    categoriesHTML += `<h3 class=category-header>${category} - ${categoryArtworks.length} items</h3>
                         <div class=category-items>`
-                        let categoryArtworks = data.filter(function(artwork){
-                            return (artwork.category_titles[0] === category)
-                        })
                         categoryArtworks.forEach(function(artwork){
                           categoriesHTML += `<div class=category-item>
                           ${artwork.title}
