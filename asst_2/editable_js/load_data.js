@@ -14,13 +14,11 @@ async function loadData() {
 
     const response = await fetch ("https://api.artic.edu/api/v1/artworks?page=2&limit=100")
     const data = await response.json();
+    if (!response.ok) throw new Error('Load failed');
     console.log("data loaded", data);
 
     return data.data;
     
-    // Simulate API delay
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
-    // return mockRestaurantData;
   } catch (error) {
     console.error("Failed to load data:", error);
     throw new Error("Could not load data from API");
