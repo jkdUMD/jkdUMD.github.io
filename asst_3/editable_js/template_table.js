@@ -35,7 +35,7 @@ function showTable(data) {
                     </table>`;
 
   return `
-                <h2 class="view-title">📊 Table View</h2>
+                <h2 class="view-title">📝 Table View</h2>
                 <p class="view-description">Browse artworks in table form</p>
                 <div class="restaurant-table">
                     ${tableHTML}

@@ -1,7 +1,12 @@
+
+/* Import Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
 /* BASE STYLES - Students can modify and extend */
 :root {
-    --primary-color: #007cba;
-    --secondary-color: #28a745;
+    --primary-color: #de4646;
+    --secondary-color: #972727;
     --background-color: #f8f9fa;
     --card-background: #ffffff;
     --text-color: #333;
@@ -10,11 +15,15 @@
 }
 
 body {
-    font-family: system-ui, sans-serif;
+    font-family: "Tinos", serif;
     margin: 0;
     padding: 1rem;
     background: var(--background-color);
     color: var(--text-color);
+}
+
+h1 {
+    font-family: "Poiret One", sans-serif;
 }
 
 .container {
@@ -36,12 +45,13 @@ body {
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
     cursor: pointer;
+    font-family: "Tinos", serif;
     font-size: 1rem;
     transition: background-color 0.2s;
 }
 
 .view-button:hover {
-    background: #005a87;
+    background: #ff7e7e;
 }
 
 .view-button.active {
@@ -78,6 +88,7 @@ body {
     color: var(--text-color);
     border-bottom: 2px solid #eee;
     padding-bottom: 0.5rem;
+    font-family: "Poiret One", sans-serif;
 }
 
 .view-description {
@@ -121,7 +132,7 @@ body {
 }
 
 .restaurant-table th {
-    background: #f8f9fa;
+    background: #d9d9d9;
     font-weight: 600;
 }
 
@@ -171,7 +182,7 @@ body {
 .stat-card {
     text-align: center;
     padding: 2rem;
-    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     border-radius: 8px;
 }
@@ -183,7 +194,7 @@ body {
 }
 
 .stat-label {
-    font-size: 1.1rem;
+    font-size: 2rem;
     opacity: 0.9;
 }
 

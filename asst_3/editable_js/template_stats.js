@@ -7,26 +7,21 @@ let barChart = null;
 let pieChart = null;
 
 export function showStats(data) {
-  // TODO: Students implement this function
-  // Requirements:
-  // - Calculate meaningful statistics from the dataset
-  // - Present insights visually
-  // - Show distributions, averages, counts, etc.
-  // - Help users understand patterns in the data
   /*html*/
-  let statsHTML = ``;
+  let statsHTML = `<div class="stats-grid">`;
 
-    /* Everything here is code from the previous assignment
+    // Everything here is code from the previous assignment
     
     statsHTML += `<div class="stat-card">
-                        <h3 class="stat-title">Number of artworks</h3>
+                        <h3 class="stat-label">Number of artworks</h3>
                         <div class="stat-number">${data.length}</div>
                     </div>`
     const categories = new Set(data.map((item) => item.category_titles[0]))
     statsHTML += `<div class="stat-card">
-                        <h3 class="stat-title">Number of categories</h3>
+                        <h3 class="stat-label">Number of categories</h3>
                         <div class="stat-number">${categories.size}</div>
                     </div>`
+    /*
 
     let largestCategory = "";
     let categoryAmount = 0;
@@ -48,13 +43,13 @@ export function showStats(data) {
                         <h3 class="stat-title">Largest Category Size</h3>
                         <div class="stat-number">${categoryAmount}</div>
                     </div>`
-
+    */
     const artists = new Set(data.map((item) => item.artist_title))
     statsHTML += `<div class="stat-card">
-                        <h3 class="stat-title">Number of Artists</h3>
+                        <h3 class="stat-label">Number of Artists</h3>
                         <div class="stat-number">${artists.size}</div>
                     </div>`
-
+    /*
     let mostPublishedArtist = "";
     let publications = 0;
     artists.forEach(artist => {
@@ -76,7 +71,7 @@ export function showStats(data) {
                         <div class="stat-number">${publications}</div>
                     </div>`
     */
-
+    statsHTML +=`</div>`
     statsHTML +=`<div>
                     <div class="chart-container">
                         <canvas id="bar-chart"></canvas>
@@ -258,7 +253,7 @@ export function createPieChart(data) {
             data: {
                 labels: chartLabels,
                 datasets: [{
-                    label: 'Artwork Categories',
+                    label: 'Artists',
                     data: chartData,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.6)',
@@ -276,7 +271,7 @@ export function createPieChart(data) {
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Artwork Categories'
+                        text: 'Artists'
                     }
                 },
             }
