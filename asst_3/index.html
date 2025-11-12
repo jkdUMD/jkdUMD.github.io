@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Institute of Chicago - Artwork in Multiple Views</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Importing chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+  <body>
+    <div class="container">
+        <header>
+            <h1>One Dataset, Four Presentations</h1>
+            <p><strong>Assignment:</strong> The same restaurant data, displayed in four different ways. Each presentation emphasizes different aspects of the information and serves different user goals.</p>
+        </header>
+
+        <nav class="view-selector">
+            <button class="view-button active" id="btn-cards" data-view="cards">Card View</button>
+            <button class="view-button" id="btn-table" data-view="table">Table View</button>
+            <button class="view-button" id="btn-categories" data-view="categories">Category View</button>
+            <button class="view-button" id="btn-stats" data-view="stats">Stats View</button>
+        </nav>
+
+        <main class="display-container">
+            <div id="data-display">
+                <div class="loading">Loading restaurant data...</div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="./script.js" defer></script>
+</body>
+</html>
