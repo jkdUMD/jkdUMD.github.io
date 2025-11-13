@@ -85,8 +85,6 @@ export function showStats(data) {
                 </div>`
 
   return `
-                <h2 class="view-title">📈 Statistics View</h2>
-                <p class="view-description">Browse statistics about artworks</p>
                 <div>
                     ${statsHTML}
                 </div>

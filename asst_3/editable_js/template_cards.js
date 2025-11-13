@@ -9,16 +9,18 @@ function showCards(data) {
        /*html*/ 
       (artwork) => `
                 <div class="restaurant-card">
-                    <h3>${artwork.title}</h3>
-                    <p>${displayArtistName(artwork.artist_title)}</p>
-                    <p>${artwork.medium_display}</p>
-                    <p>${artwork.date_display}</p>
+                    <div class="card-header">
+                        <h3>${artwork.title}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>${displayArtistName(artwork.artist_title)}</p>
+                        <p>${artwork.medium_display}</p>
+                        <p>${artwork.date_display}</p>
+                    </div>
                 </div>`
     ).join("");
      /*html*/ 
   return `
-                <h2 class="view-title">🃏 Card View</h2>
-                <p class="view-description">Browse artworks as individual cards</p>
                 <div class="card-grid">
                     ${cardHTML}
                 </div>

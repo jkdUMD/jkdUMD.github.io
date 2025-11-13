@@ -27,6 +27,10 @@ h1 {
     font-size: 2.5rem;
 }
 
+h3 {
+    color: var(--background-color);
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -105,9 +109,20 @@ h1 {
 
 .restaurant-card {
     border: 1px solid var(--border-color);
-    padding: 1.5rem;
     background: var(--card-background);
     transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-header {
+    background: var(--primary-color);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
 }
 
 .restaurant-card:hover {

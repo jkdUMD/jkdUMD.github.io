@@ -30,8 +30,6 @@ function showCategories(data) {
   });
 
   return `
-                <h2 class="view-title">📊 Category View</h2>
-                <p class="view-description">Browse artworks in category form</p>
                 <div class="categories-section">
                     ${categoriesHTML}
                 </div>
