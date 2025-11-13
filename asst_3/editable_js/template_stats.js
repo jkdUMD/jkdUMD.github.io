@@ -73,13 +73,13 @@ export function showStats(data) {
     */
     statsHTML +=`</div>`
     statsHTML +=`<div>
-                    <div class="chart-container">
+                    <div class="bar-chart-container">
                         <canvas id="bar-chart"></canvas>
                     </div>
                 </div>`
 
     statsHTML +=`<div>
-                    <div class="chart-container">
+                    <div class="pie-chart-container">
                         <canvas id="pie-chart"></canvas>
                     </div>
                 </div>`
@@ -150,22 +150,26 @@ export function createBarChart(data) {
                     label: 'Artworks Per Category',
                     data: chartData,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(255, 205, 86, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)',
-                        'rgba(255, 159, 64, 0.6)'
+                        '#DE4646',
+                        '#47DE72',
+                        '#DEBD47',
+                        '#4754DE',
+                        '#de47d9ff'
                     ],
                     borderWidth: 2
                 }]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Artwork Categories'
+                        text: 'Artwork Categories',
+                        font: {
+                            family: "Tinos",
+                            size: 30
+                        }
                     }
                 },
                 scales: {
@@ -256,22 +260,26 @@ export function createPieChart(data) {
                     label: 'Artists',
                     data: chartData,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(255, 205, 86, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)',
-                        'rgba(255, 159, 64, 0.6)'
+                        '#DE4646',
+                        '#47DE72',
+                        '#DEBD47',
+                        '#4754DE',
+                        '#de47d9ff'
                     ],
                     borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Artists'
+                        text: 'Artists',
+                        font: {
+                            family: "Tinos",
+                            size: 30
+                        }
                     }
                 },
             }
