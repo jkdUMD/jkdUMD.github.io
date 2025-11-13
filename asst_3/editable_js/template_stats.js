@@ -145,7 +145,7 @@ export function createBarChart(data) {
             data: {
                 labels: chartLabels,
                 datasets: [{
-                    label: 'Artworks Per Category',
+                    label: 'Artworks',
                     data: chartData,
                     backgroundColor: [
                         '#DE4646',
