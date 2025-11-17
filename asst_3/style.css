@@ -30,6 +30,7 @@ h1 {
 
 h3 {
     color: var(--background-color);
+    font-size: 1.5rem;
 }
 
 .container {
