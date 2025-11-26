@@ -2,7 +2,10 @@ import * as THREE from "three";
 import {OrbitControls} from "jsm/controls/OrbitControls.js";
 import {loadDataFromAPI} from './load_data.js';
 
-// Planets object
+// Constants
+const sunRadius = 139.2;
+
+// Planets array
 let planets = [];
 
 // Set up the renderer
@@ -29,7 +32,7 @@ controls.enableDamping = true;
 controls.dampingFactor = 0.03;
     
 // Creates the sun (size of 1.0, detail of 2)
-const geo = new THREE.IcosahedronGeometry(139.2, 3);
+const geo = new THREE.IcosahedronGeometry(sunRadius, 3);
 const mat = new THREE.MeshStandardMaterial({
     color: 0xffffff,
     flatShading: true
@@ -41,6 +44,11 @@ const wireMat = new THREE.MeshBasicMaterial({
     color: 0xffffff,
     wireframe: true
 })
+
+const orbitMat = new THREE.MeshBasicMaterial({
+    color: 0xffffff
+})
+
 const sunWireMesh = new THREE.Mesh(geo, wireMat);
 sunWireMesh.scale.setScalar(1.001);
 // Add as a child of mesh
@@ -54,8 +62,17 @@ scene.add(hemiLight);
 function animate(t = 0)
 {
     requestAnimationFrame(animate);
-    //mesh.scale.setScalar(Math.cos(t * 0.001) + 1.0);
+
+    // Animate the sun
     mesh.rotation.y = t * 0.0001
+
+    // Animate the planets
+    planets.forEach(function(planet)
+    {
+        planet.mesh.rotation.y = t * planet.rotationSpeed;
+    });
+
+    // Update the scene
     renderer.render(scene, camera);
     controls.update();
 }
@@ -65,8 +82,9 @@ function createPlanets(data)
 {
     data.forEach(function(planet)
     {
+        // Create the planet
         const planetGeo = new THREE.IcosahedronGeometry(planet.diameter/10000, 3);
-        console.log(planet.name + " size: " + planet.diameter/10000);
+        //console.log(planet.name + " size: " + planet.diameter/10000);
         const planetMat = new THREE.MeshStandardMaterial({
             color: 0xffffff,
             flatShading: true
@@ -79,8 +97,24 @@ function createPlanets(data)
         // Add as a child of mesh
         planetMesh.add(planetWireMesh);
 
-        planetMesh.position.x = planet.distanceFromSun + 139.2;
-        console.log(planet.name + " distance: " + planet.distanceFromSun);
+        // Add planet to array
+        const planetObj = 
+        {
+            mesh: planetMesh,
+            rotationSpeed: 0.01/planet.rotationPeriod,
+            revolutionSpeed: 1/planet.orbitalPeriod
+        }
+        planets[planets.length] = planetObj;
+
+        planetMesh.position.x = planet.distanceFromSun + sunRadius;
+        //console.log(planet.name + " distance: " + planet.distanceFromSun);
+
+        // Create the orbit visual
+        // TorusGemoetry(radius of torus, radius of tube, radial segments, tubular segments)
+        const orbitGeometry = new THREE.TorusGeometry(planet.distanceFromSun + sunRadius, .1, 4, 1000);
+        const orbitMesh = new THREE.Mesh(orbitGeometry, orbitMat);
+        scene.add(orbitMesh);
+        orbitMesh.rotation.x = 90 * (Math.PI / 180);
     });
 }
 
