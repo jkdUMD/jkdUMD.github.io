@@ -9,8 +9,8 @@ const sunRadius = 139.2;
 let planets = [];
 
 // Set up the renderer
-const w = window.innerWidth;
-const h = window.innerHeight;
+let w = window.innerWidth;
+let h = window.innerHeight;
 const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(w, h);
 // Add the renderer to the DOM
@@ -18,7 +18,7 @@ document.body.appendChild(renderer.domElement);
 
 // Set up the camera
 const fov= 75;
-const aspect = w/h;
+let aspect = w/h;
 const near = 0.1;
 const far = 100000;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
@@ -34,7 +34,7 @@ controls.dampingFactor = 0.03;
 // Creates the sun (size of 1.0, detail of 2)
 const geo = new THREE.IcosahedronGeometry(sunRadius, 3);
 const mat = new THREE.MeshStandardMaterial({
-    color: 0xffffff,
+    color: 0xffa600,
     flatShading: true
 });
 const mesh = new THREE.Mesh(geo, mat);
@@ -55,7 +55,7 @@ sunWireMesh.scale.setScalar(1.001);
 mesh.add(sunWireMesh);
 
 // Add lighting
-const hemiLight = new THREE.HemisphereLight(0x0099ff, 0xaa5500);
+const hemiLight = new THREE.HemisphereLight(0xffffff, 0x222222);
 scene.add(hemiLight);
 
 // Render the scene
@@ -70,9 +70,16 @@ function animate(t = 0)
     planets.forEach(function(planet)
     {
         planet.mesh.rotation.y = t * planet.rotationSpeed;
+        planet.mesh.position.x = (planet.distanceFromSun + sunRadius) * Math.cos(t * -planet.revolutionSpeed);
+        planet.mesh.position.z = (planet.distanceFromSun + sunRadius) * Math.sin(t * -planet.revolutionSpeed);
+        console.log(planet.distanceFromSun);
     });
 
     // Update the scene
+    w = window.innerWidth;
+    h = window.innerHeight;
+    renderer.setSize(w, h);
+
     renderer.render(scene, camera);
     controls.update();
 }
@@ -101,8 +108,9 @@ function createPlanets(data)
         const planetObj = 
         {
             mesh: planetMesh,
+            distanceFromSun: planet.distanceFromSun,
             rotationSpeed: 0.01/planet.rotationPeriod,
-            revolutionSpeed: 1/planet.orbitalPeriod
+            revolutionSpeed: .1/planet.orbitalPeriod
         }
         planets[planets.length] = planetObj;
 
