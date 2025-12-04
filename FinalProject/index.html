@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planetary Simulation</title>
-    <style>
-      body {
-        margin: 0;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <script type="importmap">
 			{
 				"imports": {
@@ -19,6 +15,11 @@
 		</script>
   </head>
   <body>
+    <h1>Planetary System</h1>
+    <nav class="view-selector">
+      <button class="view-button active" id="btn-model" data-view="model">Model View</button>
+      <button class="view-button" id="btn-table" data-view="table">Table View</button>
+    </nav>
     <script type="module" src="script.js"></script>
   </body>
 </html>
