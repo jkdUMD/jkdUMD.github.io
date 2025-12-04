@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import {OrbitControls} from "jsm/controls/OrbitControls.js";
-import {loadDataFromAPI} from './load_data.js';
+import {loadDataFromAPI, loadDataFromJSON} from './load_data.js';
 
 // Constants
 const sunRadius = 139.2;
@@ -55,7 +55,7 @@ sunWireMesh.scale.setScalar(1.001);
 mesh.add(sunWireMesh);
 
 // Add lighting
-const hemiLight = new THREE.HemisphereLight(0xffffff, 0x222222);
+const hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff);
 scene.add(hemiLight);
 
 // Render the scene
@@ -64,7 +64,7 @@ function animate(t = 0)
     requestAnimationFrame(animate);
 
     // Animate the sun
-    mesh.rotation.y = t * 0.0001
+    mesh.rotation.y = t * (0.01/600);
 
     // Animate the planets
     planets.forEach(function(planet)
@@ -79,8 +79,11 @@ function animate(t = 0)
     w = window.innerWidth;
     h = window.innerHeight;
     renderer.setSize(w, h);
+    aspect = w/h;
+    camera.aspect = aspect;
 
     renderer.render(scene, camera);
+    camera.updateProjectionMatrix();
     controls.update();
 }
 animate();
@@ -131,7 +134,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     try 
     {
         // Uncomment whichever data source you wish to collect data from
-        const data = await loadDataFromAPI();
+        //const data = await loadDataFromAPI();
+        const data = await loadDataFromJSON();
 
         // Testing data
         /*
