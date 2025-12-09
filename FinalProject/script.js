@@ -144,25 +144,27 @@ function createTable(data) {
     let content = "";
     data.forEach(function(planet)
     {
-        content += `<h3>
-                        ${planet.name}
-                    </h3>
-                    <table class="data-table">
-                        <thead>
+        content += `<div class="planet-section">
+                        <h3>
+                            ${planet.name}
+                        </h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Diameter (km)</th>
+                                    <th>Distance from Sun (million km)</th>
+                                    <th>Rotational Period (hours)</th>
+                                    <th>Orbital Period (days)</th>
+                                </tr>
+                            </thead>
                             <tr>
-                                <th>Diameter (km)</th>
-                                <th>Distance from Sun (million km)</th>
-                                <th>Rotational Period (hours)</th>
-                                <th>Orbital Period (days)</th>
+                                <td>${planet.diameter}</td>
+                                <td>${planet.distanceFromSun}</td>
+                                <td>${getRotationPeriod(planet.rotationPeriod)}</td>
+                                <td>${planet.orbitalPeriod}</td>
                             </tr>
-                        </thead>
-                        <tr>
-                            <td>${planet.diameter}</td>
-                            <td>${planet.distanceFromSun}</td>
-                            <td>${getRotationPeriod(planet.rotationPeriod)}</td>
-                            <td>${planet.orbitalPeriod}</td>
-                        </tr>
-                    </table>`;
+                        </table>
+                    </div>`;
     });
     console.log(content);
     document.getElementById("data-display").innerHTML = content;

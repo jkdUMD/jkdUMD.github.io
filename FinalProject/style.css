@@ -4,8 +4,9 @@
 :root {
     --text-color: rgb(238, 238, 238);
     --selected-color: rgb(189, 69, 0);
-    --unselected-color: rgb(55, 55, 55);
-    --hover-color: rgb(85, 85, 85);
+    --unselected-color: rgb(28, 28, 28);
+    --hover-color: rgb(70, 70, 70);
+    --section-color: rgb(28, 28, 28);
 }
 
 body {
@@ -33,6 +34,12 @@ h3 {
     color: var(--text-color);
     font-family: "Geo", serif;
     font-size: 3rem;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    background: var(--selected-color);
+    border-radius: .5rem .5rem 0 0;
 }
 
 .view-selector {
@@ -79,12 +86,23 @@ h3 {
     flex-direction: column;
 }
 
-.data-table {
+.planet-section {
     align-items: center;
+    background-color: var(--section-color);
+    margin-top: 1.5rem;
+    margin-bottom: .5rem;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: .5rem;
+}
+
+.data-table {
+    width: 90%;
     border-collapse: collapse;
-    margin-bottom: 1rem;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .data-table th,
