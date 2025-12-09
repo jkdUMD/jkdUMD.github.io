@@ -13,10 +13,10 @@ let showingRenderer = true;
 
 // Set up the renderer
 let w = window.innerWidth;
-let h = window.innerHeight - document.getElementById('title-controls').scrollHeight - 50;
-console.log("HEIGHT: " + document.getElementById('title-controls').scrollHeight - 50);
-console.log(h);
-console.log(window.innerHeight);
+let h = window.innerHeight - document.getElementById('title-controls').scrollHeight - 60;
+//console.log("HEIGHT: " + document.getElementById('title-controls').scrollHeight - 60);
+//console.log(h);
+//console.log(window.innerHeight);
 const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(w, h);
 // Add the renderer to the DOM
@@ -85,7 +85,7 @@ function animate(t = 0)
     if (showingRenderer)
     {
         w = window.innerWidth;
-        h = window.innerHeight - document.getElementById('title-controls').scrollHeight - 50;
+        h = window.innerHeight - document.getElementById('title-controls').scrollHeight - 60;
         renderer.setSize(w, h);
         aspect = w/h;
         camera.aspect = aspect;
@@ -147,25 +147,35 @@ function createTable(data) {
         content += `<h3>
                         ${planet.name}
                     </h3>
-                    <table>
+                    <table class="data-table">
                         <thead>
                             <tr>
-                                <th>Velocity</th>
-                                <th>Artist Name</th>
-                                <th>Medium</th>
-                                <th>Display Date</th>
+                                <th>Diameter (km)</th>
+                                <th>Distance from Sun (million km)</th>
+                                <th>Rotational Period (hours)</th>
+                                <th>Orbital Period (days)</th>
                             </tr>
                         </thead>
                         <tr>
-                            <td>${planet.name}</td>
-                            <td>${planet.name}</td>
-                            <td>${planet.name}</td>
-                            <td>${planet.name}</td>
+                            <td>${planet.diameter}</td>
+                            <td>${planet.distanceFromSun}</td>
+                            <td>${getRotationPeriod(planet.rotationPeriod)}</td>
+                            <td>${planet.orbitalPeriod}</td>
                         </tr>
                     </table>`;
     });
     console.log(content);
     document.getElementById("data-display").innerHTML = content;
+}
+
+// Helper function to perform absolute value on rotation period
+function getRotationPeriod(value)
+{
+    if (value < 0)
+    {
+        return value * -1;
+    }
+    return value;
 }
 
 // Update button states
@@ -210,8 +220,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     try 
     {
         // Uncomment whichever data source you wish to collect data from
-        //const data = await loadDataFromAPI();
-        const data = await loadDataFromJSON();
+        const data = await loadDataFromAPI();
+        //const data = await loadDataFromJSON();
 
         // Testing data
         /*

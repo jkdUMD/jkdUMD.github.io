@@ -1,5 +1,5 @@
 /* Import Google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Geo:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
     --text-color: rgb(238, 238, 238);
@@ -11,15 +11,28 @@
 body {
     margin: 0;
     background: black;
+    font-family: "Saira Condensed", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    background-image: url('./Space.png'); /* Replace with your image path */
+    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Keeps the background image fixed while scrolling */
 }
 
 h1 {
     color: var(--text-color);
     font-family: "Geo", serif;
-    font-size: 4rem;
+    font-size: 5rem;
     margin-bottom: .75rem;
     margin-top: 1.25rem;
     text-align: center;
+}
+
+h3 {
+    text-align: center;
+    color: var(--text-color);
+    font-family: "Geo", serif;
+    font-size: 3rem;
 }
 
 .view-selector {
@@ -34,7 +47,9 @@ h1 {
     border: none;
     padding: 0.75rem 1.5rem;
     cursor: pointer;
-    font-family: "Geo", serif;
+    font-family: "Saira Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     font-size: 1.5rem;
     transition: background-color 0.2s;
 }
@@ -62,4 +77,26 @@ h1 {
 #data-display {
     display: none;
     flex-direction: column;
+}
+
+.data-table {
+    align-items: center;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.data-table th,
+.data-table td {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1.5rem;
+}
+
+.data-table th {
+    font-weight: 400;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1.5rem;
 }
