@@ -1,5 +1,65 @@
+/* Import Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Geo:ital@0;1&display=swap');
+
+:root {
+    --text-color: rgb(238, 238, 238);
+    --selected-color: rgb(189, 69, 0);
+    --unselected-color: rgb(55, 55, 55);
+    --hover-color: rgb(85, 85, 85);
+}
+
 body {
     margin: 0;
     background: black;
-    color: white;
+}
+
+h1 {
+    color: var(--text-color);
+    font-family: "Geo", serif;
+    font-size: 4rem;
+    margin-bottom: .75rem;
+    margin-top: 1.25rem;
+    text-align: center;
+}
+
+.view-selector {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.view-button {
+    background: var(--unselected-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-family: "Geo", serif;
+    font-size: 1.5rem;
+    transition: background-color 0.2s;
+}
+
+.view-button:hover {
+    background: var(--hover-color)
+}
+
+.view-button.active {
+    background: var(--selected-color);
+}
+
+#btn-model {
+    border-radius: .2rem 0 0 .2rem;
+}
+
+#btn-table {
+    border-radius: 0 .2rem .2rem 0;
+}
+
+.display-container {
+    color: var(--text-color);
+}
+
+#data-display {
+    display: none;
+    flex-direction: column;
 }

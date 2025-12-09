@@ -15,11 +15,16 @@
 		</script>
   </head>
   <body>
-    <h1>Planetary System</h1>
-    <nav class="view-selector">
-      <button class="view-button active" id="btn-model" data-view="model">Model View</button>
-      <button class="view-button" id="btn-table" data-view="table">Table View</button>
-    </nav>
+    <div class="title-controls" id="title-controls">
+      <h1>Planetary System</h1>
+      <nav class="view-selector">
+        <button class="view-button active" id="btn-model" data-view="model">Model View</button>
+        <button class="view-button" id="btn-table" data-view="table">Table View</button>
+      </nav>
+    </div>
+    <main class="display-container">
+      <div id="data-display"></div>
+    </main>
     <script type="module" src="script.js"></script>
   </body>
 </html>

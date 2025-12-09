@@ -8,9 +8,15 @@ const sunRadius = 139.2;
 // Planets array
 let planets = [];
 
+// Tracks whether or not the renderer is displaying
+let showingRenderer = true;
+
 // Set up the renderer
 let w = window.innerWidth;
-let h = window.innerHeight;
+let h = window.innerHeight - document.getElementById('title-controls').scrollHeight - 50;
+console.log("HEIGHT: " + document.getElementById('title-controls').scrollHeight - 50);
+console.log(h);
+console.log(window.innerHeight);
 const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(w, h);
 // Add the renderer to the DOM
@@ -34,7 +40,7 @@ controls.dampingFactor = 0.03;
 // Creates the sun (size of 1.0, detail of 2)
 const geo = new THREE.IcosahedronGeometry(sunRadius, 3);
 const mat = new THREE.MeshStandardMaterial({
-    color: 0xffa600,
+    color: 0xff8400,
     flatShading: true
 });
 const mesh = new THREE.Mesh(geo, mat);
@@ -72,22 +78,26 @@ function animate(t = 0)
         planet.mesh.rotation.y = t * planet.rotationSpeed;
         planet.mesh.position.x = (planet.distanceFromSun + sunRadius) * Math.cos(t * -planet.revolutionSpeed);
         planet.mesh.position.z = (planet.distanceFromSun + sunRadius) * Math.sin(t * -planet.revolutionSpeed);
-        console.log(planet.distanceFromSun);
+        //console.log(planet.distanceFromSun);
     });
 
     // Update the scene
-    w = window.innerWidth;
-    h = window.innerHeight;
-    renderer.setSize(w, h);
-    aspect = w/h;
-    camera.aspect = aspect;
+    if (showingRenderer)
+    {
+        w = window.innerWidth;
+        h = window.innerHeight - document.getElementById('title-controls').scrollHeight - 50;
+        renderer.setSize(w, h);
+        aspect = w/h;
+        camera.aspect = aspect;
 
-    renderer.render(scene, camera);
-    camera.updateProjectionMatrix();
-    controls.update();
+        renderer.render(scene, camera);
+        camera.updateProjectionMatrix();
+        controls.update();
+    }
 }
 animate();
 
+// Create the planets from the dataset
 function createPlanets(data)
 {
     data.forEach(function(planet)
@@ -129,6 +139,72 @@ function createPlanets(data)
     });
 }
 
+// Adds the planet data to the html to display later
+function createTable(data) {
+    let content = "";
+    data.forEach(function(planet)
+    {
+        content += `<h3>
+                        ${planet.name}
+                    </h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Velocity</th>
+                                <th>Artist Name</th>
+                                <th>Medium</th>
+                                <th>Display Date</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>${planet.name}</td>
+                            <td>${planet.name}</td>
+                            <td>${planet.name}</td>
+                            <td>${planet.name}</td>
+                        </tr>
+                    </table>`;
+    });
+    console.log(content);
+    document.getElementById("data-display").innerHTML = content;
+}
+
+// Update button states
+function updateButtonStates(activeView) {
+  document.querySelectorAll(".view-button").forEach((button) => {
+    button.classList.remove("active");
+  });
+  document.getElementById(`btn-${activeView}`).classList.add("active");
+}
+
+// Toggles the renderer the hide and display
+function toggleRenderer()
+{
+    if (showingRenderer)
+    {
+        showingRenderer = false;
+        w = 0;
+        h = 0;
+        renderer.setSize(w, h);
+        aspect = 1;
+        camera.aspect = aspect;
+
+        renderer.render(scene, camera);
+        camera.updateProjectionMatrix();
+    }
+    else
+    {
+        showingRenderer = true;
+        w = window.innerWidth;
+        h = window.innerHeight - document.getElementById('title-controls').scrollHeight - 50;
+        renderer.setSize(w, h);
+        aspect = w/h;
+        camera.aspect = aspect;
+
+        renderer.render(scene, camera);
+        camera.updateProjectionMatrix();
+    }
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("Starting application...");
     try 
@@ -146,6 +222,23 @@ document.addEventListener("DOMContentLoaded", async () => {
         */
 
         createPlanets(data);
+        createTable(data);
+
+        // Set up button event handlers - this pattern always works!
+        document.getElementById("btn-model").onclick = () => {
+            toggleRenderer();
+            updateButtonStates("model");
+            // This line changes the visibility of the table view
+            // I learned how to do this from here: https://stackoverflow.com/questions/15241915/how-to-change-css-property-using-javascript
+            document.getElementById("data-display").style.display = "none";
+        };
+
+        document.getElementById("btn-table").onclick = () => {
+            toggleRenderer();
+            updateButtonStates("table");
+            document.getElementById("data-display").style.display = "flex";
+        };
+
         console.log("Application ready!");
     } 
     catch (error)
