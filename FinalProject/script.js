@@ -103,7 +103,7 @@ function createPlanets(data)
     data.forEach(function(planet)
     {
         // Create the planet
-        const planetGeo = new THREE.IcosahedronGeometry(planet.diameter/10000, 3);
+        const planetGeo = new THREE.IcosahedronGeometry(planet.diameter/10000, 2);
         //console.log(planet.name + " size: " + planet.diameter/10000);
         const planetMat = new THREE.MeshStandardMaterial({
             color: 0xffffff,
