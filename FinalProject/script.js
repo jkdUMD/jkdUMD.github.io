@@ -29,6 +29,7 @@ const near = 0.1;
 const far = 100000;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.position.z = 300;
+camera.position.y = 50;
 
 const scene = new THREE.Scene();
 
@@ -56,7 +57,7 @@ const orbitMat = new THREE.MeshBasicMaterial({
 })
 
 const sunWireMesh = new THREE.Mesh(geo, wireMat);
-sunWireMesh.scale.setScalar(1.001);
+sunWireMesh.scale.setScalar(1.01);
 // Add as a child of mesh
 mesh.add(sunWireMesh);
 
@@ -113,7 +114,7 @@ function createPlanets(data)
         scene.add(planetMesh);
 
         const planetWireMesh = new THREE.Mesh(planetGeo, wireMat);
-        planetWireMesh.scale.setScalar(1.001);
+        planetWireMesh.scale.setScalar(1.01);
         // Add as a child of mesh
         planetMesh.add(planetWireMesh);
 
@@ -222,8 +223,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     try 
     {
         // Uncomment whichever data source you wish to collect data from
-        const data = await loadDataFromAPI();
-        //const data = await loadDataFromJSON();
+        //const data = await loadDataFromAPI();
+        const data = await loadDataFromJSON();
 
         // Testing data
         /*

@@ -126,3 +126,25 @@ h3 {
     color: var(--text-color);
     font-size: 1.5rem;
 }
+
+@media (width <= 650px){
+    h1 {
+        font-size: 2.8rem;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    .view-button{
+        font-size: 1rem;
+    }
+
+    .data-table td {
+        font-size: 1rem;
+    }
+
+    .data-table th {
+        font-size: 1rem;
+    }
+}
